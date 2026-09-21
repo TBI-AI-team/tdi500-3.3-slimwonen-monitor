@@ -13,6 +13,8 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 
 cp -R dist/. "$tmp/"
+# Vite laat .git staan bij het legen van dist/; die mag niet mee de branch in.
+rm -rf "$tmp/.git"
 touch "$tmp/.nojekyll"
 
 remote="$(git remote get-url origin)"
